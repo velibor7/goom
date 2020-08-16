@@ -1,13 +1,30 @@
 import React from "react";
-import logo from "./logo.svg";
-import "./App.css";
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch,
+  Redirect,
+} from "react-router-dom";
 
-import Home from "./home/Home";
+import Home from "./pages/Home";
+import Room from "./pages/Room";
+
+import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
+          <Route path="/:room">
+            <Room />
+          </Route>
+          <Redirect to="/" />
+        </Switch>
+      </Router>
     </div>
   );
 }
