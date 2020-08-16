@@ -23,15 +23,9 @@ const Home = () => {
     makeRoom();
   }, []);
 
-  const makeRoomHandler = () => {
-    console.log("making a room");
-  };
-
   return (
     <div>
-      <Link to={room}>
-        <button onClick={makeRoomHandler}>Make a room</button>
-      </Link>
+      <Link to={room}>Make a room</Link>
     </div>
   );
 };

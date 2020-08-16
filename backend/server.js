@@ -26,13 +26,15 @@ app.get("/", (req, res, next) => {
 app.get("/:room", (req, res) => {
   // res.render("room", { roomId: req.params.room });
   const roomId = req.params.room;
-  console.log(roomId);
+  // console.log(roomId);
   res.json({ roomId });
 });
 
 io.on("connection", (socket) => {
   socket.on("join-room", (roomId, userId) => {
     console.log(roomId, userId);
+    socket.join(roomId);
+    socket.to(roomId).broadcast.emit("user-connected", userId);
   });
 });
 
