@@ -35,6 +35,10 @@ io.on("connection", (socket) => {
     console.log(roomId, userId);
     socket.join(roomId);
     socket.to(roomId).broadcast.emit("user-connected", userId);
+    // when user leaves
+    socket.on("disconnect", () => {
+      socket.to(roomId).broadcast.emit("user-disconnected", userId);
+    });
   });
 });
 
